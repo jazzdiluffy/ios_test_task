@@ -59,9 +59,11 @@ final class APIService: APIServiceProtocol {
         urlComponents.scheme = Constants.urlScheme
         urlComponents.host = Constants.urlHost
         urlComponents.path = path
-        urlComponents.queryItems = parameters.map({ key, value in
-            URLQueryItem(name: key, value: value)
-        })
+        if !parameters.isEmpty {
+            urlComponents.queryItems = parameters.map({ key, value in
+                URLQueryItem(name: key, value: value)
+            })
+        }
         return urlComponents.url
     }
     
@@ -72,6 +74,17 @@ final class APIService: APIServiceProtocol {
         }
         var request = URLRequest(url: url)
         request.setValue("Client-ID \(Constants.accessKey)", forHTTPHeaderField: "Authorization")
+        request.httpMethod = type.rawValue
+        request.timeoutInterval = 30
+        completion(request)
+    }
+    
+    func makeRequest1(with url: URL?, type: HTTPMethod, completion: @escaping (URLRequest) -> Void) {
+        guard let url = url else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.setValue("Client-ID 091343ce13c8ae780065ecb3b13dc903475dd22cb78a05503c2e0c69c5e98044", forHTTPHeaderField: "Authorization")
         request.httpMethod = type.rawValue
         request.timeoutInterval = 30
         completion(request)

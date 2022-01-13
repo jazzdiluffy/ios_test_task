@@ -16,15 +16,13 @@ final class HomeCollectionViewController: UIViewController {
     var coordinator: HomeCoordinator!
     var searchResults: [Photo] = []
     lazy var cellSizes: [CGSize] = {
-           var cellSizes = [CGSize]()
-           
-           for photo in searchResults {
-               cellSizes.append(CGSize(width: photo.width, height: photo.height))
-           }
-           
-           return cellSizes
-       }()
-    
+        var cellSizes = [CGSize]()
+        
+        for photo in searchResults {
+            cellSizes.append(CGSize(width: photo.width, height: photo.height))
+        }
+        return cellSizes
+    }()
     
     private lazy var collectionView: UICollectionView = {
         let layout = CollectionViewWaterfallLayout()
@@ -143,7 +141,6 @@ extension HomeCollectionViewController: UICollectionViewDelegate, UICollectionVi
         apiService.makeAdditionalPhotoInfoRequest(by: current.id) { result in
             switch result {
             case .success(let model):
-                print(model)
                 self.coordinator?.showAdditionalInfo(with: model)
             case .failure(let error):
                 print(error.localizedDescription)
@@ -158,4 +155,3 @@ extension HomeCollectionViewController: CollectionViewWaterfallLayoutDelegate {
         return cellSizes[indexPath.item]
     }
 }
-

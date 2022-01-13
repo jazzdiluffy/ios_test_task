@@ -12,6 +12,8 @@ final class PhotoAdditionalInfoViewController: UIViewController {
         
     private var model: AdditionalPhotoInfo
     
+    private let favoriteService: FavoritePhotoServiceProtocol = FavoritePhotoService.shared
+    
     init(with photoInfo: AdditionalPhotoInfo) {
         model = photoInfo
         super.init(nibName: nil, bundle: nil)
@@ -30,8 +32,8 @@ final class PhotoAdditionalInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        
         setupViews()
+        setupRightBarButtonItems()
     }
     
     override func viewDidLayoutSubviews() {
@@ -81,6 +83,22 @@ final class PhotoAdditionalInfoViewController: UIViewController {
         }
     }
     
+    private func setupRightBarButtonItems() {
+        let button = UIButton(type: .custom)
+        let isLiked = favoriteService.isLiked(with: model.id)
+        button.setImage(UIImage(systemName: isLiked ? "star.fill" : "star"), for: .normal)
+        button.addTarget(self, action: #selector(didTapAddToFavorite), for: .touchUpInside)
+        
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(customView: button),
+            UIBarButtonItem(
+                barButtonSystemItem: .action,
+                target: self,
+                action: #selector(didTapShare)
+            )
+        ]
+    }
+    
     private func setupLayout() {
         imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
@@ -112,3 +130,45 @@ final class PhotoAdditionalInfoViewController: UIViewController {
 
 }
 
+
+extension PhotoAdditionalInfoViewController {
+    @objc func didTapShare() {
+        guard let url = URL(string: model.urls["full"] ?? "") else {
+            return
+        }
+        let vc = UIActivityViewController(
+            activityItems: [url],
+            applicationActivities: []
+        )
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func didTapAddToFavorite() {
+        let actionSheet = UIAlertController(title: "Photo by \(model.user.username)",
+                                            message: "Actions",
+                                            preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel",
+                                            style: .cancel,
+                                            handler: nil))
+        let isLiked = self.favoriteService.isLiked(with: self.model.id)
+        actionSheet.addAction(UIAlertAction(title: isLiked ? "Remove from favorite" : "Add to favorite",
+                                            style: isLiked ? .destructive : .default,
+                                            handler: { [weak self] _ in
+            guard let self = self else { return }
+            if !isLiked {
+                self.favoriteService.markAsLiked(with: self.model)
+                DispatchQueue.main.async {
+                    self.setupRightBarButtonItems()
+                }
+            } else {
+                self.favoriteService.unlike(with: self.model)
+                DispatchQueue.main.async {
+                    self.setupRightBarButtonItems()
+                }
+            }
+            
+        }))
+        present(actionSheet, animated: true, completion: nil)
+    }
+}

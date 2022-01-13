@@ -20,9 +20,13 @@ class MainCoordinator {
     func start(in window: UIWindow) {
         let homeVC = HomeCollectionViewController()
         homeVC.coordinator = HomeCoordinator(mainCoordinator: self)
+        
+        let favoriteVC = FavoritePhotosViewController()
+        favoriteVC.coordinator = FavoritePhotoCoordinator(mainCoordinator: self)
+        
         let controllers = [
             homeVC,
-            FavoritePhotosViewController()
+            favoriteVC
         ]
             .map { UINavigationController(rootViewController: $0) }
         

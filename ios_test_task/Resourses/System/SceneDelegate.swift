@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         coordinator.start(in: window)
+//        window.rootViewController = AuthViewController()
         self.window = window
         window.makeKeyAndVisible()
     }

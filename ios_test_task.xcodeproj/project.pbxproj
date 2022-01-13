@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		661C9DA527906CB000A7BB68 /* FavoritePhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661C9DA427906CB000A7BB68 /* FavoritePhotoService.swift */; };
+		661C9DA727907C2400A7BB68 /* FavoritePhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661C9DA627907C2400A7BB68 /* FavoritePhotoViewCell.swift */; };
+		661C9DA92790867C00A7BB68 /* FavoritePhotoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661C9DA82790867C00A7BB68 /* FavoritePhotoCoordinator.swift */; };
 		66E84162278F49C00016D83F /* PhotoAdditionalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E84161278F49C00016D83F /* PhotoAdditionalInfoViewController.swift */; };
 		66E84164278F51230016D83F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E84163278F51230016D83F /* Extensions.swift */; };
 		66E8416E278F6BE20016D83F /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E8416D278F6BE20016D83F /* Photo.swift */; };
@@ -29,6 +32,9 @@
 /* Begin PBXFileReference section */
 		089DEBD3397F419217DD9941 /* Pods_ios_test_task.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_test_task.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3072B75198DA779DBBB68013 /* Pods-ios_test_task.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_test_task.release.xcconfig"; path = "Target Support Files/Pods-ios_test_task/Pods-ios_test_task.release.xcconfig"; sourceTree = "<group>"; };
+		661C9DA427906CB000A7BB68 /* FavoritePhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotoService.swift; sourceTree = "<group>"; };
+		661C9DA627907C2400A7BB68 /* FavoritePhotoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotoViewCell.swift; sourceTree = "<group>"; };
+		661C9DA82790867C00A7BB68 /* FavoritePhotoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePhotoCoordinator.swift; sourceTree = "<group>"; };
 		66E84161278F49C00016D83F /* PhotoAdditionalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAdditionalInfoViewController.swift; sourceTree = "<group>"; };
 		66E84163278F51230016D83F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		66E8416D278F6BE20016D83F /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -79,6 +85,7 @@
 			children = (
 				66FCA079278DBD3F00FF2530 /* MainCoordinator.swift */,
 				66E84171278F857C0016D83F /* HomeCoordinator.swift */,
+				661C9DA82790867C00A7BB68 /* FavoritePhotoCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -107,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				66FCA07F278DC32200FF2530 /* APIService.swift */,
+				661C9DA427906CB000A7BB68 /* FavoritePhotoService.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -132,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				66FCA083278DE8B000FF2530 /* PhotoViewCell.swift */,
+				661C9DA627907C2400A7BB68 /* FavoritePhotoViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -306,16 +315,19 @@
 			files = (
 				66E8416E278F6BE20016D83F /* Photo.swift in Sources */,
 				66FCA080278DC32200FF2530 /* APIService.swift in Sources */,
+				661C9DA527906CB000A7BB68 /* FavoritePhotoService.swift in Sources */,
 				66FCA084278DE8B000FF2530 /* PhotoViewCell.swift in Sources */,
 				66FCA082278DD4F700FF2530 /* SearchResult.swift in Sources */,
 				66FCA07A278DBD3F00FF2530 /* MainCoordinator.swift in Sources */,
 				66E84162278F49C00016D83F /* PhotoAdditionalInfoViewController.swift in Sources */,
+				661C9DA92790867C00A7BB68 /* FavoritePhotoCoordinator.swift in Sources */,
 				66FCA066278DBBB400FF2530 /* AppDelegate.swift in Sources */,
 				66E84164278F51230016D83F /* Extensions.swift in Sources */,
 				66E84172278F857C0016D83F /* HomeCoordinator.swift in Sources */,
 				66FCA068278DBBB400FF2530 /* SceneDelegate.swift in Sources */,
 				66FCA07C278DBE3F00FF2530 /* HomeCollectionViewController.swift in Sources */,
 				66E84170278F6BFC0016D83F /* AdditionalPhotoInfo.swift in Sources */,
+				661C9DA727907C2400A7BB68 /* FavoritePhotoViewCell.swift in Sources */,
 				66FCA07E278DBE6500FF2530 /* FavoritePhotosViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

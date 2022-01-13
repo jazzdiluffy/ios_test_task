@@ -18,7 +18,7 @@ final class PhotoViewCell: UICollectionViewCell {
        let imageView = UIImageView()
         imageView.image = UIImage(systemName: "photo.fill")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
         return imageView
