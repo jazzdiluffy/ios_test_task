@@ -141,7 +141,9 @@ extension HomeCollectionViewController: UICollectionViewDelegate, UICollectionVi
         apiService.makeAdditionalPhotoInfoRequest(by: current.id) { result in
             switch result {
             case .success(let model):
-                self.coordinator?.showAdditionalInfo(with: model)
+                DispatchQueue.main.async {
+                    self.coordinator?.showAdditionalInfo(with: model)
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
