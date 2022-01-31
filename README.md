@@ -1,5 +1,5 @@
 # Unsplash Image Collection App
-<img src="https://imgur.com/a/2XLO374" align="center">
+<img src="art/cover.png" align="center">
 
 
 ### 🔷 General
