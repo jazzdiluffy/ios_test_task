@@ -37,7 +37,7 @@ extension UIView {
 
 protocol ObjectSavable {
     func setObject<Object>(_ object: Object, forKey: String) throws where Object: Encodable
-    func getObject<Object>(forKey: String, castTo type: Object.Type) throws -> Object where Object: Decodable
+    func getObject<Object>(forKey: String, castTo type: Object.Type) -> Object? where Object: Decodable
 }
 
 enum ObjectSavableError: String, LocalizedError {
@@ -61,14 +61,14 @@ extension UserDefaults: ObjectSavable {
         }
     }
     
-    func getObject<Object>(forKey: String, castTo type: Object.Type) throws -> Object where Object: Decodable {
-        guard let data = data(forKey: forKey) else { throw ObjectSavableError.noValue }
+    func getObject<Object>(forKey: String, castTo type: Object.Type) -> Object? where Object: Decodable {
+        guard let data = data(forKey: forKey) else { return nil }
         let decoder = JSONDecoder()
         do {
             let object = try decoder.decode(type, from: data)
             return object
         } catch {
-            throw ObjectSavableError.unableToDecode
+            return nil
         }
     }
 }

@@ -24,6 +24,8 @@ final class HomeCollectionViewController: UIViewController {
         return cellSizes
     }()
     
+    
+    
     private lazy var collectionView: UICollectionView = {
         let layout = CollectionViewWaterfallLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
@@ -142,7 +144,7 @@ extension HomeCollectionViewController: UICollectionViewDelegate, UICollectionVi
             switch result {
             case .success(let model):
                 DispatchQueue.main.async {
-                    self.coordinator?.showAdditionalInfo(with: model)
+                    self.coordinator?.showAdditionalInfo(with: model)                    
                 }
             case .failure(let error):
                 print(error.localizedDescription)

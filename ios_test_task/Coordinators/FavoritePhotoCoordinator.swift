@@ -19,10 +19,7 @@ class FavoritePhotoCoordinator: MainCoordinator {
     }
     
     func showAdditionalInfo(with photoInfo: AdditionalPhotoInfo) {
-        DispatchQueue.main.async {
-            let vc = PhotoAdditionalInfoViewController(with: photoInfo)
-            self.currentNavigationController.pushViewController(vc, animated: true)
-        }
-        
+        let vc = PhotoAdditionalInfoViewController(with: photoInfo)
+        self.currentNavigationController.pushViewController(vc, animated: true)
     }
 }

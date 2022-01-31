@@ -23,21 +23,17 @@ final class FavoritePhotoService: FavoritePhotoServiceProtocol {
     
     
     var liked: [AdditionalPhotoInfo] {
-        do {
-            let likedPhotos = try UserDefaults.standard.getObject(forKey: Self.key, castTo: [AdditionalPhotoInfo].self)
+        
+            let likedPhotos: [AdditionalPhotoInfo] =  UserDefaults.standard.getObject(forKey: Self.key, castTo: [AdditionalPhotoInfo].self) ?? []
             return likedPhotos
-        } catch {
-            return []
-        }
+        
     }
     
     func isLiked(with id: String) -> Bool {
         var liked: [AdditionalPhotoInfo] = []
-        do  {
-            liked = try UserDefaults.standard.getObject(forKey: Self.key, castTo: [AdditionalPhotoInfo].self)
-        } catch {
-            print("ssjdknvsv")
-        }
+         
+        liked = UserDefaults.standard.getObject(forKey: Self.key, castTo: [AdditionalPhotoInfo].self) ?? []
+        
         
         for i in liked {
             if i.id == id {
@@ -49,26 +45,27 @@ final class FavoritePhotoService: FavoritePhotoServiceProtocol {
     
     func markAsLiked(with photo: AdditionalPhotoInfo) {
         do {
-            var liked: [AdditionalPhotoInfo] = try UserDefaults.standard.getObject(forKey: Self.key, castTo: [AdditionalPhotoInfo].self)
+            var liked: [AdditionalPhotoInfo] = UserDefaults.standard.getObject(forKey: Self.key, castTo: [AdditionalPhotoInfo].self) ?? []
             liked.append(photo)
+            
             try UserDefaults.standard.setObject(liked, forKey: Self.key)
             NotificationCenter.default.post(name: Self.notificationKey, object: nil)
         } catch {
-            print("avsedvcnsvoin")
+            print("[DEBUG]: Cant mark as liked")
         }
         
     }
     
     func unlike(with photo: AdditionalPhotoInfo) {
         do {
-            var liked: [AdditionalPhotoInfo] = try UserDefaults.standard.getObject(forKey: Self.key, castTo: [AdditionalPhotoInfo].self)
+            var liked: [AdditionalPhotoInfo] = UserDefaults.standard.getObject(forKey: Self.key, castTo: [AdditionalPhotoInfo].self) ?? []
             liked.removeAll {
                 $0.id == photo.id
             }
             try UserDefaults.standard.setObject(liked, forKey: Self.key)
             NotificationCenter.default.post(name: Self.notificationKey, object: nil)
         } catch {
-            print("elnsvl§§")
+            print("[DEBUG]: Cant mark as liked")
         }
     }
 }
