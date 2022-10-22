@@ -7,9 +7,9 @@
 
 
 <p align="center">
-  <img src="art/1.gif" height="600">
+  <img src="art/1.gif" width="375" height="812">
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="art/2.gif" height="600">
+  <img src="art/2.gif" width="375" height="812">
 &nbsp; &nbsp; &nbsp; &nbsp;
 </p>
 
@@ -22,7 +22,7 @@
 - Sharing friends unsplash link of particular image
 
 <p align="center">
-  <img src="art/3.gif" height="600">
+  <img src="art/3.gif" width="375" height="812">
 </p>
 
 
